@@ -203,5 +203,7 @@ class MPU6050{
         I2C i2c;
         char read_single_byte(char addr);
         int write_single_byte(char addr, char value);
+        void read_mult_bytes(char addr, char *vet, size_t size);
+        int write_mult_bytes(char addr, char *vet, size_t size);
 
 };
