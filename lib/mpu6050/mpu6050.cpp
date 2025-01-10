@@ -11,12 +11,13 @@ MPU6050::MPU6050(PinName SDA, PinName SCL) : i2c(SDA, SCL){//inicia o i2c
 
     if(this->read_single_byte(WHO_AM_I_REG) != MPU6050_I2C_ADDRESS){
         fprintf(stderr, "erro ao conectar com o mpu6050\n");
+        return;
     }
 
     this->power_reg1_config(0, 0, 0, 0, INT_8MHz_OSC);//acorda, sem sleep, sem cycle, sensor de temp ligado, clock interno 8mhz
 
-    this->gyro_reg_config(GYRO_ST_OFF, GFS_2000dps);
-    this->accel_reg_config(ACC_ST_OFF, AFS_16g);
+    this->gyro_reg_config(GYRO_ST_OFF, GFS_2000dps);//gyro no alcance maximo
+    this->accel_reg_config(ACC_ST_OFF, AFS_16g);//accel no alcance maximo
 
     return;
 }

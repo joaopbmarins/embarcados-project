@@ -22,5 +22,9 @@ fiz um downgrade da versão do python 3.12 para 3.10 para corrigir erro na compi
 sudo ln -s python3.10 /usr/bin/python
 
 ------------------------------------------------
+(REVISAR OS DEFINES DO .h QUE NÃO SEJAM REGISTRADORES)
 
-
+TODO
+fifo e self-test - pesquisar e implementar
+ler os valores do accel e gyro
+converter eles para as unidades usuais 
