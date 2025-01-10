@@ -20,3 +20,7 @@ http://www.univasf.edu.br/~romulo.camara/novo/wp-content/uploads/2013/11/Barrame
 
 fiz um downgrade da versão do python 3.12 para 3.10 para corrigir erro na compilação
 sudo ln -s python3.10 /usr/bin/python
+
+------------------------------------------------
+
+

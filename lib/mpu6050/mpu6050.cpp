@@ -13,6 +13,11 @@ MPU6050::MPU6050(PinName SDA, PinName SCL) : i2c(SDA, SCL){//inicia o i2c
         fprintf(stderr, "erro ao conectar com o mpu6050\n");
     }
 
+    this->power_reg1_config(0, 0, 0, 0, INT_8MHz_OSC);//acorda, sem sleep, sem cycle, sensor de temp ligado, clock interno 8mhz
+
+    this->gyro_reg_config(GYRO_ST_OFF, GFS_2000dps);
+    this->accel_reg_config(ACC_ST_OFF, AFS_16g);
+
     return;
 }
 
@@ -62,3 +67,51 @@ int MPU6050::write_mult_bytes(char addr, char *vet, size_t size){
     }
     return ack;// se ack for = 0, escrita recebida, se for != 0 erro na escrita
 }
+
+void MPU6050::power_reg1_config(int dev_res, int sleep, int cycle, int temp_dis, int clk_sel){
+    char data = 0;
+
+    data = data | (dev_res << 7);
+    data = data | (sleep << 6);
+    data = data | (cycle << 5);
+    data = data | (temp_dis << 3);
+    data = data | (dev_res);
+
+    this->write_single_byte(PWR_MGMT_1_REG, data);
+}
+
+void MPU6050::power_reg2_config(int LP_WAKE, int STB_XA, int STB_YA, int STB_ZA, int STB_XG, int STB_YG, int STB_ZG){
+    char data = 0;
+
+    data = data | (LP_WAKE << 6);
+    data = data | (STB_XA << 5);
+    data = data | (STB_YA << 4);
+    data = data | (STB_ZA << 3);
+    data = data | (STB_XG << 2);
+    data = data | (STB_YG << 1);
+    data = data | (STB_ZA << 0);
+
+    this->write_single_byte(PWR_MGMT_2_REG, data);
+
+}
+
+void MPU6050::gyro_reg_config(int self_test, int full_scale){
+    char data = 0;
+
+    data = data | (self_test << 5);
+    data = data | (full_scale << 3);
+
+    this->write_single_byte(GYRO_CONFIG_REG, data);
+}
+
+void MPU6050::accel_reg_config(int self_test, int full_scale){
+    char data = 0;
+
+    data = data | (self_test << 5);
+    data = data | (full_scale << 3);
+
+    this->write_single_byte(ACCEL_CONFIG_REG, data);
+}
+
+
+

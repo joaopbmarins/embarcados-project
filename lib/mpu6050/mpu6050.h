@@ -123,10 +123,10 @@
 //------------------------------------
 #define GFS_DISABLE 0x00
 #define GFS_250dps  0x00
-#define GFS_500dps  0x08
-#define GFS_1000dps 0x10
-#define GFS_2000dps 0x18
-#define GYRO_ST_ON  0xE0
+#define GFS_500dps  0x01
+#define GFS_1000dps 0x02
+#define GFS_2000dps 0x03
+#define GYRO_ST_ON  0x07
 #define GYRO_ST_OFF 0x00
 
 //----------------------------------------
@@ -134,10 +134,10 @@
 //----------------------------------------
 #define AFS_DSIABLE 0x00
 #define AFS_2g      0x00
-#define AFS_4g      0x08
-#define AFS_8g      0x10
-#define AFS_16g     0x18
-#define ACC_ST_ON   0xE0
+#define AFS_4g      0x01
+#define AFS_8g      0x02
+#define AFS_16g     0x03
+#define ACC_ST_ON   0x07
 #define ACC_ST_OFF  0x00
 
 //----------------------------------------------
@@ -198,6 +198,11 @@
 class MPU6050{
     public:
         MPU6050(PinName SDA, PinName SCL);
+        void power_reg1_config(int dev_res, int sleep, int cycle, int temp_dis, int clk_sel);
+        void power_reg2_config(int LP_WAKE, int STB_XA, int STB_YA, int STB_ZA, int STB_XG, int STB_YG, int STB_ZG);
+        void gyro_reg_config(int self_test, int full_scale);
+        void accel_reg_config(int self_test, int full_scale);
+
 
     private:
         I2C i2c;
