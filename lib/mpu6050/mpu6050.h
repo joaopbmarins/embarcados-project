@@ -143,7 +143,7 @@
 //----------------------------------------------
 // Sensor Measurements To Load In FIFO Register
 //----------------------------------------------
-#define TEMP_FIFO_EN              0x80
+#define TEMP_FIFO_EN              0x80//Esses valores precisam ser atualizados
 #define GYRO_FIFO_EN              0x70
 #define ACCEL_FIFO_EN             0x08
 #define SLV2_FIFO_EN              0x04
@@ -165,7 +165,7 @@
 //-------------------------------
 // User Control settings
 //-------------------------------
-#define FIFO_EN        0x40
+#define FIFO_EN        0x40//Esses valores precisam ser atualizados
 #define FIFO_DIS       0x00
 #define I2C_MST_EN     0x60
 #define I2C_MST_DIS    0x00
@@ -176,7 +176,7 @@
 //---------------------------------
 // Power Management Setings One
 //---------------------------------
-#define DEVICE_RESET      0x80
+#define DEVICE_RESET      0x80//Esses valores precisam ser atualizados
 #define SEEP              0x40
 #define CYCLE             0x20
 #define TEMP_DIS          0x08
@@ -190,7 +190,7 @@
 //---------------------------------
 // Power Management Settings Two
 //---------------------------------
-#define LP_WAKE_CTRL_1Hz  0x00
+#define LP_WAKE_CTRL_1Hz  0x00//Esses valores precisam ser atualizados
 #define LP_WAKE_CTRL_5Hz  0x40
 #define LP_WAKE_CTRL_20Hz 0x80
 #define LP_WAKE_CTRL_40Hz 0xC0
@@ -210,5 +210,7 @@ class MPU6050{
         int write_single_byte(char addr, char value);
         void read_mult_bytes(char addr, char *vet, size_t size);
         int write_mult_bytes(char addr, char *vet, size_t size);
+        float accel_sens;
+        float gyro_sens;
 
 };

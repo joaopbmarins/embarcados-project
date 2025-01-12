@@ -102,6 +102,27 @@ void MPU6050::gyro_reg_config(int self_test, int full_scale){
     data = data | (self_test << 5);
     data = data | (full_scale << 3);
 
+    switch (full_scale){
+    case GFS_250dps:
+        this->gyro_sens = 131.0;
+        break;
+    case GFS_500dps:
+        this->gyro_sens = 65.5;
+        break;
+
+    case GFS_1000dps:
+        this->gyro_sens = 32.8;
+        break;
+
+    case GFS_2000dps:
+        this->gyro_sens = 16.4;
+        break;
+
+    default:
+        this->gyro_sens = 0;//opção invalida
+        break;
+    }
+
     this->write_single_byte(GYRO_CONFIG_REG, data);
 }
 
@@ -110,6 +131,27 @@ void MPU6050::accel_reg_config(int self_test, int full_scale){
 
     data = data | (self_test << 5);
     data = data | (full_scale << 3);
+
+    switch (full_scale){
+    case AFS_2g:
+        this->accel_sens = 16384;
+        break;
+    case AFS_4g:
+        this->accel_sens = 8192;
+        break;
+
+    case AFS_8g:
+        this->accel_sens = 4096;
+        break;
+
+    case AFS_16g:
+        this->accel_sens = 2048;
+        break;
+
+    default:
+        this->accel_sens = 0;//opção invalida
+        break;
+    }
 
     this->write_single_byte(ACCEL_CONFIG_REG, data);
 }
