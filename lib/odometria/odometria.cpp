@@ -38,7 +38,7 @@ double odometria::read_gyro(){
         
         speed = gyro[2];
     }
-
+    return gyro[2];// w rad/s
 }
 
 void odometria::update_gyro(){
