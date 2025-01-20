@@ -4,15 +4,6 @@
 #include "MPU6050.h"
 #include "mbed.h"
 
-typedef struct{
-    double speed_sum;
-    size_t count;
-}Speed;
-
-static double graus_to_rad(double &graus);
-static void graus3_to_rad3(double graus[]);
-
-
 class odometria{
     public:
     odometria(int freq_p, PinName SDA, PinName SCL);
