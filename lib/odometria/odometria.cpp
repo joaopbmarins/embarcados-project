@@ -11,7 +11,7 @@ odometria::odometria(int freq_p,PinName SDA, PinName SCL) : _MPU(SDA, SCL){
 }
 
 static double graus_to_rad(double &graus){
-    return graus * (M_PI/180.0);
+    return graus * GRAUS_TO_RAD;
 }
 
 static void graus3_to_rad3(double graus[]){

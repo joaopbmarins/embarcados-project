@@ -4,6 +4,8 @@
 #include "MPU6050.h"
 #include "mbed.h"
 
+#define GRAUS_TO_RAD 0.017453293F
+
 class odometria{
     public:
     odometria(int freq_p, PinName SDA, PinName SCL);
