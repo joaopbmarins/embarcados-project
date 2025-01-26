@@ -2,12 +2,12 @@
 #include <cmath>
 
 odometria::odometria(int freq_p,PinName SDA, PinName SCL) : _MPU(SDA, SCL){
-    freq = freq_p;
+    freq = freq_p;//em milisegundos
 
     _MPU.initialize();
     time.start();
 
-    intr_update_gyro.attach(callback(this, &odometria::update_gyro), std::chrono::microseconds(freq));
+    intr_update_gyro.attach(callback(this, &odometria::update_gyro), std::chrono::milliseconds(freq));
 }
 
 static double graus_to_rad(double &graus){
